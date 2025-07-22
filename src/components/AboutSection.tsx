@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Shield, Zap, TrendingUp, Users, Trophy, Target, Globe, MessageCircle } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const AboutSection = () => {
   const skills = [
@@ -21,10 +22,12 @@ const AboutSection = () => {
 
   const platforms = ["Telegram", "Twitter/X", "Discord", "Reddit", "TikTok", "Instagram"];
 
+  const [sectionRef, isVisible] = useScrollAnimation();
+
   return (
-    <section className="py-20 bg-background">
+    <section ref={sectionRef} className="py-20 bg-background">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
             About <span className="bg-warm-gradient bg-clip-text text-transparent">Canes</span>
           </h2>
@@ -39,8 +42,10 @@ const AboutSection = () => {
           {achievements.map((achievement, index) => (
             <div 
               key={index} 
-              className="text-center p-6 bg-card border border-border rounded-lg hover:shadow-warm transition-all duration-300 animate-fade-in hover-scale group"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`text-center p-6 bg-card border border-border rounded-lg hover:shadow-warm transition-all duration-1000 hover-scale group ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ 
+                transitionDelay: isVisible ? `${index * 100}ms` : '0ms'
+              }}
             >
               <achievement.icon className="w-8 h-8 text-primary mx-auto mb-3 group-hover:animate-pulse" />
               <div className="text-3xl font-bold text-primary mb-2">{achievement.number}</div>
@@ -50,7 +55,7 @@ const AboutSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
-          <div className="animate-fade-in">
+          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}>
             <h3 className="text-3xl font-bold text-foreground mb-6 bg-warm-gradient bg-clip-text text-transparent">
               The Canes Advantage
             </h3>
@@ -73,7 +78,7 @@ const AboutSection = () => {
             </div>
           </div>
 
-          <div className="space-y-6 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <div className={`space-y-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`} style={{ transitionDelay: isVisible ? '600ms' : '0ms' }}>
             <h3 className="text-2xl font-semibold text-foreground mb-6">Platform Mastery</h3>
             <div className="grid grid-cols-2 gap-3">
               {platforms.map((platform, index) => (
@@ -81,7 +86,6 @@ const AboutSection = () => {
                   key={platform} 
                   variant="secondary" 
                   className="text-lg py-3 px-4 bg-primary/10 text-primary hover:bg-primary/20 transition-all duration-300 hover-scale justify-center"
-                  style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {platform}
                 </Badge>
@@ -104,8 +108,10 @@ const AboutSection = () => {
           {skills.map((skill, index) => (
             <Card 
               key={index} 
-              className="border-border hover:shadow-warm transition-all duration-500 group hover-scale animate-fade-in"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`border-border hover:shadow-warm transition-all duration-1000 group hover-scale ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ 
+                transitionDelay: isVisible ? `${800 + (index * 100)}ms` : '0ms'
+              }}
             >
               <CardContent className="p-6 text-center">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-all duration-300 group-hover:animate-pulse">

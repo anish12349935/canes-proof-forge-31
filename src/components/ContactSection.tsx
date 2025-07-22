@@ -1,13 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageCircle, Send, Twitter, Users } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const ContactSection = () => {
+  const [sectionRef, isVisible] = useScrollAnimation();
+
   return (
-    <section className="py-20 bg-hero-gradient relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 bg-hero-gradient relative overflow-hidden">
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
             Ready to <span className="text-secondary">Grow Your Community?</span>
           </h2>
@@ -17,8 +20,8 @@ const ContactSection = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <Card className="bg-card/20 backdrop-blur-sm border-primary-foreground/20 animate-fade-in hover-scale" style={{ animationDelay: "0.2s" }}>
+          <div className={`space-y-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{ transitionDelay: isVisible ? '200ms' : '0ms' }}>
+            <Card className="bg-card/20 backdrop-blur-sm border-primary-foreground/20 hover-scale">
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold text-primary-foreground mb-4">What I Offer</h3>
                 <ul className="space-y-3 text-primary-foreground/90">
@@ -46,7 +49,7 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card/20 backdrop-blur-sm border-primary-foreground/20 animate-fade-in hover-scale" style={{ animationDelay: "0.4s" }}>
+            <Card className="bg-card/20 backdrop-blur-sm border-primary-foreground/20 hover-scale">
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold text-primary-foreground mb-4">Quick Response</h3>
                 <p className="text-primary-foreground/90 mb-4">
@@ -60,7 +63,7 @@ const ContactSection = () => {
             </Card>
           </div>
 
-          <div className="space-y-6 animate-fade-in" style={{ animationDelay: "0.6s" }}>
+          <div className={`space-y-6 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`} style={{ transitionDelay: isVisible ? '400ms' : '0ms' }}>
             <div className="text-center">
               <h3 className="text-2xl font-semibold text-primary-foreground mb-6">Get In Touch</h3>
             </div>
@@ -68,8 +71,7 @@ const ContactSection = () => {
             <div className="grid gap-4">
               <Button 
                 size="lg" 
-                className="bg-[#1DA1F2] hover:bg-[#1a91da] text-white flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300 transform hover:scale-105 animate-fade-in"
-                style={{ animationDelay: "0.8s" }}
+                className="bg-[#1DA1F2] hover:bg-[#1a91da] text-white flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300 transform hover:scale-105"
               >
                 <Twitter className="w-6 h-6" />
                 Connect on Twitter/X
@@ -77,8 +79,7 @@ const ContactSection = () => {
               
               <Button 
                 size="lg" 
-                className="bg-[#0088cc] hover:bg-[#006699] text-white flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300 transform hover:scale-105 animate-fade-in"
-                style={{ animationDelay: "1s" }}
+                className="bg-[#0088cc] hover:bg-[#006699] text-white flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300 transform hover:scale-105"
               >
                 <MessageCircle className="w-6 h-6" />
                 Message on Telegram
@@ -87,8 +88,7 @@ const ContactSection = () => {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300 hover:scale-105 animate-fade-in"
-                style={{ animationDelay: "1.2s" }}
+                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300 hover:scale-105"
               >
                 <Users className="w-6 h-6" />
                 Join My Community

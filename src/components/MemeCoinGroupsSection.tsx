@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Users, Crown, Shield, TrendingUp } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const MemeCoinGroupsSection = () => {
   const groups = [
@@ -60,10 +61,12 @@ const MemeCoinGroupsSection = () => {
     }
   ];
 
+  const [sectionRef, isVisible] = useScrollAnimation();
+
   return (
-    <section className="py-20 bg-muted/30">
+    <section ref={sectionRef} className="py-20 bg-muted/30">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 text-sm font-medium text-primary mb-4 hover-scale">
             <Crown className="w-4 h-4" />
             Community Leadership
@@ -80,8 +83,10 @@ const MemeCoinGroupsSection = () => {
           {groups.map((group, index) => (
             <Card 
               key={group.id} 
-              className="group hover:shadow-warm transition-all duration-500 transform hover:scale-105 border-border animate-fade-in"
-              style={{ animationDelay: `${index * 0.15}s` }}
+              className={`group hover:shadow-warm transition-all duration-1000 transform hover:scale-105 border-border ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ 
+                transitionDelay: isVisible ? `${200 + (index * 100)}ms` : '0ms'
+              }}
             >
               <CardContent className="p-0">
                 <div className="relative overflow-hidden rounded-t-lg">
@@ -129,7 +134,7 @@ const MemeCoinGroupsSection = () => {
           ))}
         </div>
 
-        <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: "1s" }}>
+        <div className={`mt-16 text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: isVisible ? '1000ms' : '0ms' }}>
           <div className="bg-card border border-border rounded-xl p-8 max-w-4xl mx-auto hover:shadow-warm transition-all duration-300">
             <h3 className="text-2xl font-bold text-foreground mb-4">
               Combined Community Impact

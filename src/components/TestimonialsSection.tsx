@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Quote, Star } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const TestimonialsSection = () => {
   const testimonials = [
@@ -38,10 +39,12 @@ const TestimonialsSection = () => {
     }
   ];
 
+  const [sectionRef, isVisible] = useScrollAnimation();
+
   return (
-    <section className="py-20 bg-background">
+    <section ref={sectionRef} className="py-20 bg-background">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
             Client <span className="bg-warm-gradient bg-clip-text text-transparent">Reviews</span>
           </h2>
@@ -54,8 +57,10 @@ const TestimonialsSection = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={index} 
-              className="border-border hover:shadow-warm transition-all duration-500 relative overflow-hidden group hover-scale animate-fade-in"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className={`border-border hover:shadow-warm transition-all duration-1000 relative overflow-hidden group hover-scale ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ 
+                transitionDelay: isVisible ? `${200 + (index * 200)}ms` : '0ms'
+              }}
             >
               <CardContent className="p-6">
                 <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-30 transition-all duration-300 group-hover:animate-pulse">

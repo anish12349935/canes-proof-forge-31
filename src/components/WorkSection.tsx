@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { ExternalLink, TrendingUp, Users, MessageSquare } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const WorkSection = () => {
   const projects = [
@@ -44,10 +45,12 @@ const WorkSection = () => {
     }
   };
 
+  const [sectionRef, isVisible] = useScrollAnimation();
+
   return (
-    <section className="py-20 bg-muted/30">
+    <section ref={sectionRef} className="py-20 bg-muted/30">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
             My <span className="bg-warm-gradient bg-clip-text text-transparent">Work</span>
           </h2>
@@ -60,8 +63,10 @@ const WorkSection = () => {
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className="border-border hover:shadow-warm transition-all duration-500 group overflow-hidden hover-scale animate-fade-in"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className={`border-border hover:shadow-warm transition-all duration-1000 group overflow-hidden hover-scale ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ 
+                transitionDelay: isVisible ? `${200 + (index * 150)}ms` : '0ms'
+              }}
             >
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-4">
@@ -100,7 +105,7 @@ const WorkSection = () => {
           ))}
         </div>
 
-        <div className="mt-16 bg-card rounded-2xl p-8 border border-border animate-fade-in" style={{ animationDelay: "0.8s" }}>
+        <div className={`mt-16 bg-card rounded-2xl p-8 border border-border transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: isVisible ? '800ms' : '0ms' }}>
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="space-y-2 hover-scale">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto hover:bg-primary/20 transition-all duration-300 group">
