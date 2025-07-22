@@ -7,7 +7,7 @@ const ContactSection = () => {
     <section className="py-20 bg-hero-gradient relative overflow-hidden">
       
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl lg:text-5xl font-bold text-primary-foreground mb-6">
             Ready to <span className="text-secondary">Grow Your Community?</span>
           </h2>
@@ -18,7 +18,7 @@ const ContactSection = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
-            <Card className="bg-card/20 backdrop-blur-sm border-primary-foreground/20">
+            <Card className="bg-card/20 backdrop-blur-sm border-primary-foreground/20 animate-fade-in hover-scale" style={{ animationDelay: "0.2s" }}>
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold text-primary-foreground mb-4">What I Offer</h3>
                 <ul className="space-y-3 text-primary-foreground/90">
@@ -46,21 +46,21 @@ const ContactSection = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-card/20 backdrop-blur-sm border-primary-foreground/20">
+            <Card className="bg-card/20 backdrop-blur-sm border-primary-foreground/20 animate-fade-in hover-scale" style={{ animationDelay: "0.4s" }}>
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold text-primary-foreground mb-4">Quick Response</h3>
                 <p className="text-primary-foreground/90 mb-4">
                   I typically respond within 2 hours and can start working on your project within 24 hours.
                 </p>
                 <div className="flex items-center gap-2 text-secondary">
-                  <Send className="w-4 h-4" />
+                  <Send className="w-4 h-4 animate-pulse" />
                   <span className="font-medium">Fast turnaround guaranteed</span>
                 </div>
               </CardContent>
             </Card>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 animate-fade-in" style={{ animationDelay: "0.6s" }}>
             <div className="text-center">
               <h3 className="text-2xl font-semibold text-primary-foreground mb-6">Get In Touch</h3>
             </div>
@@ -68,7 +68,8 @@ const ContactSection = () => {
             <div className="grid gap-4">
               <Button 
                 size="lg" 
-                className="bg-[#1DA1F2] hover:bg-[#1a91da] text-white flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300 transform hover:scale-105"
+                className="bg-[#1DA1F2] hover:bg-[#1a91da] text-white flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300 transform hover:scale-105 animate-fade-in"
+                style={{ animationDelay: "0.8s" }}
               >
                 <Twitter className="w-6 h-6" />
                 Connect on Twitter/X
@@ -76,7 +77,8 @@ const ContactSection = () => {
               
               <Button 
                 size="lg" 
-                className="bg-[#0088cc] hover:bg-[#006699] text-white flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300 transform hover:scale-105"
+                className="bg-[#0088cc] hover:bg-[#006699] text-white flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300 transform hover:scale-105 animate-fade-in"
+                style={{ animationDelay: "1s" }}
               >
                 <MessageCircle className="w-6 h-6" />
                 Message on Telegram
@@ -85,7 +87,8 @@ const ContactSection = () => {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300"
+                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 flex items-center gap-3 justify-center py-6 text-lg font-medium transition-all duration-300 hover:scale-105 animate-fade-in"
+                style={{ animationDelay: "1.2s" }}
               >
                 <Users className="w-6 h-6" />
                 Join My Community

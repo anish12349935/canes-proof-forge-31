@@ -63,8 +63,8 @@ const MemeCoinGroupsSection = () => {
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 text-sm font-medium text-primary mb-4">
+        <div className="text-center mb-16 animate-fade-in">
+          <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 text-sm font-medium text-primary mb-4 hover-scale">
             <Crown className="w-4 h-4" />
             Community Leadership
           </div>
@@ -77,8 +77,12 @@ const MemeCoinGroupsSection = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {groups.map((group) => (
-            <Card key={group.id} className="group hover:shadow-warm transition-all duration-300 transform hover:scale-105 border-border">
+          {groups.map((group, index) => (
+            <Card 
+              key={group.id} 
+              className="group hover:shadow-warm transition-all duration-500 transform hover:scale-105 border-border animate-fade-in"
+              style={{ animationDelay: `${index * 0.15}s` }}
+            >
               <CardContent className="p-0">
                 <div className="relative overflow-hidden rounded-t-lg">
                   <img 
@@ -125,21 +129,21 @@ const MemeCoinGroupsSection = () => {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <div className="bg-card border border-border rounded-xl p-8 max-w-4xl mx-auto">
+        <div className="mt-16 text-center animate-fade-in" style={{ animationDelay: "1s" }}>
+          <div className="bg-card border border-border rounded-xl p-8 max-w-4xl mx-auto hover:shadow-warm transition-all duration-300">
             <h3 className="text-2xl font-bold text-foreground mb-4">
               Combined Community Impact
             </h3>
             <div className="grid md:grid-cols-3 gap-8">
-              <div>
+              <div className="hover-scale">
                 <div className="text-3xl font-bold text-primary mb-2">1.2M+</div>
                 <div className="text-muted-foreground">Total Members</div>
               </div>
-              <div>
+              <div className="hover-scale">
                 <div className="text-3xl font-bold text-primary mb-2">43%</div>
                 <div className="text-muted-foreground">Avg Growth Rate</div>
               </div>
-              <div>
+              <div className="hover-scale">
                 <div className="text-3xl font-bold text-primary mb-2">6</div>
                 <div className="text-muted-foreground">Active Communities</div>
               </div>

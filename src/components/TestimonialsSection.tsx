@@ -41,7 +41,7 @@ const TestimonialsSection = () => {
   return (
     <section className="py-20 bg-background">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
             Client <span className="bg-warm-gradient bg-clip-text text-transparent">Reviews</span>
           </h2>
@@ -52,15 +52,23 @@ const TestimonialsSection = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
-            <Card key={index} className="border-border hover:shadow-warm transition-all duration-300 relative overflow-hidden group">
+            <Card 
+              key={index} 
+              className="border-border hover:shadow-warm transition-all duration-500 relative overflow-hidden group hover-scale animate-fade-in"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
               <CardContent className="p-6">
-                <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                <div className="absolute top-4 right-4 opacity-10 group-hover:opacity-30 transition-all duration-300 group-hover:animate-pulse">
                   <Quote className="w-12 h-12 text-primary" />
                 </div>
                 
                 <div className="flex items-center gap-1 mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-primary text-primary" />
+                    <Star 
+                      key={i} 
+                      className="w-4 h-4 fill-primary text-primary group-hover:animate-pulse transition-all duration-300" 
+                      style={{ animationDelay: `${i * 0.1}s` }}
+                    />
                   ))}
                 </div>
                 
@@ -69,9 +77,9 @@ const TestimonialsSection = () => {
                 </p>
                 
                 <div className="flex items-center gap-4">
-                  <Avatar className="w-12 h-12">
+                  <Avatar className="w-12 h-12 group-hover:scale-110 transition-transform duration-300">
                     <AvatarImage src="" alt={testimonial.name} />
-                    <AvatarFallback className="bg-primary/10 text-primary font-semibold">
+                    <AvatarFallback className="bg-primary/10 text-primary font-semibold group-hover:bg-primary/20 transition-colors duration-300">
                       {testimonial.avatar}
                     </AvatarFallback>
                   </Avatar>
@@ -87,13 +95,6 @@ const TestimonialsSection = () => {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-6 py-3">
-            <Star className="w-5 h-5 fill-primary text-primary" />
-            <span className="text-lg font-semibold text-primary">4.9/5 Average Rating</span>
-            <span className="text-muted-foreground">• 50+ Happy Clients</span>
-          </div>
-        </div>
       </div>
     </section>
   );

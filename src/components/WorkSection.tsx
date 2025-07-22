@@ -47,7 +47,7 @@ const WorkSection = () => {
   return (
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6">
             My <span className="bg-warm-gradient bg-clip-text text-transparent">Work</span>
           </h2>
@@ -58,13 +58,17 @@ const WorkSection = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className="border-border hover:shadow-warm transition-all duration-300 group overflow-hidden">
+            <Card 
+              key={index} 
+              className="border-border hover:shadow-warm transition-all duration-500 group overflow-hidden hover-scale animate-fade-in"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <Badge className={getTypeColor(project.type)}>
                     {project.type}
                   </Badge>
-                  <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors cursor-pointer" />
+                  <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-all duration-300 cursor-pointer hover:scale-110" />
                 </div>
                 
                 <h3 className="text-xl font-semibold text-foreground mb-3">
@@ -96,25 +100,25 @@ const WorkSection = () => {
           ))}
         </div>
 
-        <div className="mt-16 bg-card rounded-2xl p-8 border border-border">
+        <div className="mt-16 bg-card rounded-2xl p-8 border border-border animate-fade-in" style={{ animationDelay: "0.8s" }}>
           <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="space-y-2">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <Users className="w-8 h-8 text-primary" />
+            <div className="space-y-2 hover-scale">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto hover:bg-primary/20 transition-all duration-300 group">
+                <Users className="w-8 h-8 text-primary group-hover:animate-pulse" />
               </div>
               <div className="text-3xl font-bold text-foreground">500K+</div>
               <div className="text-muted-foreground">Total Community Members Managed</div>
             </div>
-            <div className="space-y-2">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <TrendingUp className="w-8 h-8 text-primary" />
+            <div className="space-y-2 hover-scale">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto hover:bg-primary/20 transition-all duration-300 group">
+                <TrendingUp className="w-8 h-8 text-primary group-hover:animate-pulse" />
               </div>
               <div className="text-3xl font-bold text-foreground">1000%</div>
               <div className="text-muted-foreground">Average Community Growth</div>
             </div>
-            <div className="space-y-2">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                <MessageSquare className="w-8 h-8 text-primary" />
+            <div className="space-y-2 hover-scale">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto hover:bg-primary/20 transition-all duration-300 group">
+                <MessageSquare className="w-8 h-8 text-primary group-hover:animate-pulse" />
               </div>
               <div className="text-3xl font-bold text-foreground">10M+</div>
               <div className="text-muted-foreground">Engagement Interactions Generated</div>
